@@ -68,7 +68,7 @@ jobs:
         pip install .
 
     - name: Create descriptor
-      uses: michellewang/argparse-to-boutiques@5a26b6b75b53c667d8d2ba020ffb3ab2bd099f58
+      uses: michellewang/argparse-to-boutiques@ec637e4ea92d1484d863d877f4dc0ed911b611f7
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
