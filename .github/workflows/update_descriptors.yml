@@ -81,7 +81,7 @@ jobs:
 
     - name: Create descriptor
       # uses: michellewang/python-cli-to-boutiques@v1
-      uses: michellewang/python-cli-to-boutiques@cf05902c923c58c7d4f8bc1228d5ead400894447
+      uses: michellewang/python-cli-to-boutiques@0062e9a42ed53eada6d5ad6d7697f304b021f7f6
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
