@@ -1,0 +1,95 @@
+---
+name: Create/update Boutiques descriptors
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+
+  create-descriptor:
+
+    strategy:
+      matrix:
+        # tool-name:
+        #     - adni_to_bids
+        #     - aibl_to_bids
+        #     - habs_to_bids
+        #     - nifd_to_bids
+        #     - oasis_to_bids
+        #     - oasis3_to_bids
+        #     - ukb_to_bids
+        #     - genfi_to_bids
+        #     - ixi_to_bids
+        #     - t1_linear
+        #     - flair_linear
+        #     - pet_linear
+        #     - t1_volume
+        #     - pet_volume
+        #     - statistics_volume
+        #     - t1_freesurfer
+        include:
+            - tool-name: adni_to_bids
+              parser-location: clinica.converters.adni_to_bids.cli:cli
+            # - tool-name: aibl_to_bids
+            #   parser-location: clinica.converters.aibl_to_bids.cli:cli
+            # - tool-name: habs_to_bids
+            #   parser-location: clinica.converters.habs_to_bids.cli:cli
+            # - tool-name: nifd_to_bids
+            #   parser-location: clinica.converters.nifd_to_bids.cli:cli
+            # - tool-name: oasis_to_bids
+            #   parser-location: clinica.converters.oasis_to_bids.cli:cli
+            # - tool-name: oasis3_to_bids
+            #   parser-location: clinica.converters.oasis3_to_bids.cli:cli
+            # - tool-name: ukb_to_bids
+            #   parser-location: clinica.converters.ukb_to_bids.cli:cli
+            # - tool-name: genfi_to_bids
+            #   parser-location: clinica.converters.genfi_to_bids.cli:cli
+            # - tool-name: ixi_to_bids
+            #   parser-location: clinica.converters.ixi_to_bids.cli:cli
+            - tool-name: t1_linear
+              parser-location: clinica.pipelines.t1_linear.t1_linear_cli:cli
+            # - tool-name: flair_linear
+            #   parser-location: clinica.pipelines.t1_linear.flair_linear_cli:cli
+            # - tool-name: pet_linear
+            #   parser-location: clinica.pipelines.pet.linear.cli:cli
+            # - tool-name: t1_volume
+            #   parser-location: clinica.pipelines.t1_volume.t1_volume_cli:cli
+            # - tool-name: pet_volume
+            #   parser-location: clinica.pipelines.pets.volume.cli:cli
+            # - tool-name: statistics_volume
+            #   parser-location: clinica.pipelines.statistics_volume.statistics_volume_cli:cli
+            # - tool-name: t1_freesurfer
+            #   parser-location: clinica.pipelines.anatomical.freesurfer.t1.cli:cli
+            # - tool-name: t1_freesurfer_longitudinal
+            #   parser-location: clinica.pipelines.anatomical.freesurfer.longitudinal.cli:cli
+            # - tool-name: pet_surface
+            #   parser-location: clinica.pipelines.pet.surface.pet_surface_cli:cli
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: 3.x
+
+    - name: Install package
+      run: |
+        pip install -U pip
+        pip install .
+
+    - name: Create descriptor
+      uses: michellewang/argparse-to-boutiques@c0edd14ff097e03f6eb1f319bd4ae665a157612c
+      with:
+        parser-type: click
+        parser-location: ${{ matrix.parser-location }}
+        output-path: descriptors/${{ matrix.tool-name }}.json
+        token: ${{ secrets.PAT }}
+        click-prog-name: clinica
+        click-parent-location: clinica.cmdline:cli
