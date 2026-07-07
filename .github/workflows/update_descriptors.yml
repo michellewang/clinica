@@ -41,7 +41,7 @@ jobs:
             - tool-name: t1_volume
               parser-location: clinica.pipelines.t1_volume.t1_volume_cli:cli
             - tool-name: pet_volume
-              parser-location: clinica.pipelines.pets.volume.cli:cli
+              parser-location: clinica.pipelines.pet.volume.cli:cli
             - tool-name: statistics_volume
               parser-location: clinica.pipelines.statistics_volume.statistics_volume_cli:cli
             - tool-name: t1_freesurfer
@@ -49,7 +49,7 @@ jobs:
             - tool-name: t1_freesurfer_longitudinal
               parser-location: clinica.pipelines.anatomical.freesurfer.longitudinal.cli:cli
             - tool-name: pet_surface
-              parser-location: clinica.pipelines.pet.surface.pet_surface_cli:cli
+              parser-location: clinica.pipelines.pet_surface.pet_surface_cli:cli
             - tool-name: statistics_surface
               parser-location: clinica.pipelines.statistics_surface.cli:cli
             - tool-name: dwi_preprocessing_using_t1
