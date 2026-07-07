@@ -11,6 +11,7 @@ jobs:
   create-descriptor:
 
     strategy:
+      fail-fast: false
       matrix:
         include:
             - tool-name: adni_to_bids
@@ -68,7 +69,7 @@ jobs:
         pip install .
 
     - name: Create descriptor
-      uses: michellewang/argparse-to-boutiques@ef17da513c0498924895ddb1908e144333bff81d
+      uses: michellewang/python-cli-to-boutiques@ef17da513c0498924895ddb1908e144333bff81d
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
