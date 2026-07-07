@@ -12,23 +12,6 @@ jobs:
 
     strategy:
       matrix:
-        # tool-name:
-        #     - adni_to_bids
-        #     - aibl_to_bids
-        #     - habs_to_bids
-        #     - nifd_to_bids
-        #     - oasis_to_bids
-        #     - oasis3_to_bids
-        #     - ukb_to_bids
-        #     - genfi_to_bids
-        #     - ixi_to_bids
-        #     - t1_linear
-        #     - flair_linear
-        #     - pet_linear
-        #     - t1_volume
-        #     - pet_volume
-        #     - statistics_volume
-        #     - t1_freesurfer
         include:
             - tool-name: adni_to_bids
               parser-location: clinica.converters.adni_to_bids.cli:cli
@@ -85,7 +68,7 @@ jobs:
         pip install .
 
     - name: Create descriptor
-      uses: michellewang/argparse-to-boutiques@c0edd14ff097e03f6eb1f319bd4ae665a157612c
+      uses: michellewang/argparse-to-boutiques@5a26b6b75b53c667d8d2ba020ffb3ab2bd099f58
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
