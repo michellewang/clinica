@@ -16,40 +16,50 @@ jobs:
         include:
             - tool-name: adni_to_bids
               parser-location: clinica.converters.adni_to_bids.cli:cli
-            # - tool-name: aibl_to_bids
-            #   parser-location: clinica.converters.aibl_to_bids.cli:cli
-            # - tool-name: habs_to_bids
-            #   parser-location: clinica.converters.habs_to_bids.cli:cli
-            # - tool-name: nifd_to_bids
-            #   parser-location: clinica.converters.nifd_to_bids.cli:cli
-            # - tool-name: oasis_to_bids
-            #   parser-location: clinica.converters.oasis_to_bids.cli:cli
-            # - tool-name: oasis3_to_bids
-            #   parser-location: clinica.converters.oasis3_to_bids.cli:cli
-            # - tool-name: ukb_to_bids
-            #   parser-location: clinica.converters.ukb_to_bids.cli:cli
-            # - tool-name: genfi_to_bids
-            #   parser-location: clinica.converters.genfi_to_bids.cli:cli
-            # - tool-name: ixi_to_bids
-            #   parser-location: clinica.converters.ixi_to_bids.cli:cli
+            - tool-name: aibl_to_bids
+              parser-location: clinica.converters.aibl_to_bids.cli:cli
+            - tool-name: habs_to_bids
+              parser-location: clinica.converters.habs_to_bids.cli:cli
+            - tool-name: nifd_to_bids
+              parser-location: clinica.converters.nifd_to_bids.cli:cli
+            - tool-name: oasis_to_bids
+              parser-location: clinica.converters.oasis_to_bids.cli:cli
+            - tool-name: oasis3_to_bids
+              parser-location: clinica.converters.oasis3_to_bids.cli:cli
+            - tool-name: ukb_to_bids
+              parser-location: clinica.converters.ukb_to_bids.cli:cli
+            - tool-name: genfi_to_bids
+              parser-location: clinica.converters.genfi_to_bids.cli:cli
+            - tool-name: ixi_to_bids
+              parser-location: clinica.converters.ixi_to_bids.cli:cli
             - tool-name: t1_linear
               parser-location: clinica.pipelines.t1_linear.t1_linear_cli:cli
-            # - tool-name: flair_linear
-            #   parser-location: clinica.pipelines.t1_linear.flair_linear_cli:cli
-            # - tool-name: pet_linear
-            #   parser-location: clinica.pipelines.pet.linear.cli:cli
-            # - tool-name: t1_volume
-            #   parser-location: clinica.pipelines.t1_volume.t1_volume_cli:cli
-            # - tool-name: pet_volume
-            #   parser-location: clinica.pipelines.pets.volume.cli:cli
-            # - tool-name: statistics_volume
-            #   parser-location: clinica.pipelines.statistics_volume.statistics_volume_cli:cli
-            # - tool-name: t1_freesurfer
-            #   parser-location: clinica.pipelines.anatomical.freesurfer.t1.cli:cli
-            # - tool-name: t1_freesurfer_longitudinal
-            #   parser-location: clinica.pipelines.anatomical.freesurfer.longitudinal.cli:cli
-            # - tool-name: pet_surface
-            #   parser-location: clinica.pipelines.pet.surface.pet_surface_cli:cli
+            - tool-name: flair_linear
+              parser-location: clinica.pipelines.t1_linear.flair_linear_cli:cli
+            - tool-name: pet_linear
+              parser-location: clinica.pipelines.pet.linear.cli:cli
+            - tool-name: t1_volume
+              parser-location: clinica.pipelines.t1_volume.t1_volume_cli:cli
+            - tool-name: pet_volume
+              parser-location: clinica.pipelines.pets.volume.cli:cli
+            - tool-name: statistics_volume
+              parser-location: clinica.pipelines.statistics_volume.statistics_volume_cli:cli
+            - tool-name: t1_freesurfer
+              parser-location: clinica.pipelines.anatomical.freesurfer.t1.cli:cli
+            - tool-name: t1_freesurfer_longitudinal
+              parser-location: clinica.pipelines.anatomical.freesurfer.longitudinal.cli:cli
+            - tool-name: pet_surface
+              parser-location: clinica.pipelines.pet.surface.pet_surface_cli:cli
+            - tool-name: statistics_surface
+              parser-location: clinica.pipelines.statistics_surface.cli:cli
+            - tool-name: dwi_preprocessing_using_t1
+              parser-location: clinica.pipelines.dwi.preprocessing.t1.cli:cli
+            - tool-name: dwi_preprocessing_using_phasediff_fmap
+              parser-location: clinica.pipelines.dwi.preprocessing.fmap.cli:cli
+            - tool-name: dwi_dti
+              parser-location: clinica.pipelines.dwi.dti.cli:cli
+            - tool-name: dwi_connectome
+              parser-location: clinica.pipelines.dwi.connectome.cli:cli
 
     runs-on: ubuntu-latest
 
@@ -69,7 +79,7 @@ jobs:
         pip install .
 
     - name: Create descriptor
-      uses: michellewang/python-cli-to-boutiques@ef17da513c0498924895ddb1908e144333bff81d
+      uses: michellewang/python-cli-to-boutiques@v1
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
