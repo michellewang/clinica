@@ -1,0 +1,56 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-genfi-to-bids",
+  "description": "GENFI to BIDS converter.\n\nConvert the imaging and clinical data of GENFI, located in DATASET_DIRECTORY and\nCLINICAL_DATA_DIRECTORY respectively, to a BIDS dataset in the target BIDS_DIRECTORY.\n",
+  "command-line": "clinica convert genfi-to-bids [DATASET_DIRECTORY] [BIDS_DIRECTORY] [CLINICAL_DATA_DIR] [GIF] [FULL] [CLINICAL_DATA_TXT]",
+  "inputs": [
+    {
+      "id": "dataset_directory",
+      "type": "File",
+      "value-key": "[DATASET_DIRECTORY]",
+      "name": "dataset_directory"
+    },
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "clinical_data_dir",
+      "type": "File",
+      "value-key": "[CLINICAL_DATA_DIR]",
+      "description": "Path to the clinical data directory.",
+      "optional": true,
+      "command-line-flag": "--clinical-data-dir",
+      "name": "clinical_data_dir"
+    },
+    {
+      "id": "gif",
+      "type": "Flag",
+      "value-key": "[GIF]",
+      "description": "Add values from gif to session.tsv.",
+      "optional": true,
+      "command-line-flag": "-gif",
+      "name": "gif"
+    },
+    {
+      "id": "full",
+      "type": "Flag",
+      "value-key": "[FULL]",
+      "description": "Add all clinical data (mandatory + optional) to sessions.tsv.",
+      "optional": true,
+      "command-line-flag": "-full",
+      "name": "full"
+    },
+    {
+      "id": "clinical_data_txt",
+      "type": "File",
+      "value-key": "[CLINICAL_DATA_TXT]",
+      "description": "Path to a txt file containing additional clinical data you want to have in the BIDS output.",
+      "optional": true,
+      "command-line-flag": "--clinical-data-txt",
+      "name": "clinical_data_txt"
+    }
+  ]
+}
