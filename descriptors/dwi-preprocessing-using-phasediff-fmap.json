@@ -1,0 +1,85 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-dwi-preprocessing-using-phasediff-fmap",
+  "description": "Preprocessing of raw DWI datasets using a phase difference image.\n\nhttps://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/DWI_Preprocessing/\n",
+  "command-line": "clinica run dwi-preprocessing-using-phasediff-fmap [BIDS_DIRECTORY] [CAPS_DIRECTORY] [LOW_BVAL] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [N_PROCS] [USE_CUDA] [INITRAND] [CAPS_NAME]",
+  "inputs": [
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "low_bval",
+      "type": "Number",
+      "value-key": "[LOW_BVAL]",
+      "description": "Define the b0 volumes as all volume bval <= low_bval. (Default: 5)",
+      "optional": true,
+      "command-line-flag": "--low_bval",
+      "integer": true,
+      "name": "low_bval"
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    },
+    {
+      "id": "use_cuda",
+      "type": "Flag",
+      "value-key": "[USE_CUDA]",
+      "description": "Use the CUDA implementation of FSL eddy. See https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/eddy/UsersGuide#The_eddy_executables for details.",
+      "optional": true,
+      "command-line-flag": "--use_cuda",
+      "name": "use_cuda"
+    },
+    {
+      "id": "initrand",
+      "type": "Flag",
+      "value-key": "[INITRAND]",
+      "description": "Initialize the random number generator used when estimating hyperparameters in FSL eddy.",
+      "optional": true,
+      "command-line-flag": "--initrand",
+      "name": "initrand"
+    },
+    {
+      "id": "caps_name",
+      "type": "String",
+      "value-key": "[CAPS_NAME]",
+      "description": "The name of the CAPS dataset that will be created by the pipeline. This is not the name of the folder itself, but the name in the metadata, which can be different if desired. If the CAPS folder already exists and already has a name, this will have no effect and the existing name will be kept.",
+      "optional": true,
+      "command-line-flag": "--caps-name",
+      "name": "caps_name"
+    }
+  ]
+}
