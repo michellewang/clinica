@@ -46,7 +46,7 @@ jobs:
               parser-location: clinica.pipelines.statistics_volume.statistics_volume_cli:cli
             - tool-name: t1-freesurfer
               parser-location: clinica.pipelines.anatomical.freesurfer.t1.cli:cli
-              updates: '"inputs[2].command-line-flag-separator": "="'  # recon-all-args
+              updates: ', "inputs[2].command-line-flag-separator": "="'  # recon-all-args
             - tool-name: t1-freesurfer-longitudinal
               parser-location: clinica.pipelines.anatomical.freesurfer.longitudinal.cli:cli
             - tool-name: pet-surface
@@ -88,4 +88,4 @@ jobs:
         token: ${{ secrets.PAT }}
         click-prog-name: clinica
         click-parent-location: clinica.cmdline:cli
-        updates-str: '{ ${{ matrix.updates }} }'
+        updates-str: '{ "name": "clinica-${{ matrix.tool-name }}" ${{ matrix.updates }} }'
