@@ -1,0 +1,52 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-dwi-connectome",
+  "description": "Connectome-based processing of DWI datasets.\n\nSee https://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/DWI_Connectome/\n",
+  "command-line": "clinica run dwi-connectome [CAPS_DIRECTORY] [N_TRACKS] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [N_PROCS]",
+  "inputs": [
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "n_tracks",
+      "type": "Number",
+      "value-key": "[N_TRACKS]",
+      "description": "Set the desired number of streamlines to generate the tractography and connectome. (Default: 1000000)",
+      "optional": true,
+      "command-line-flag": "--n_tracks",
+      "integer": true,
+      "name": "n_tracks"
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    }
+  ]
+}
