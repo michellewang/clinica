@@ -1,0 +1,151 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-statistics-surface",
+  "description": "Surface-based mass-univariate analysis with BrainStat.\n\nGROUP_LABEL is a user-defined identifier to target a specific group of subjects.\n\nThe type of surface-based feature can be defined by using the third argument:\n    - \"t1-freesurfer\" for cortical thickness\n    - \"pet-surface\" for projected PET data\n    - \"custom-pipeline\" for you own data in CAPS directory\n\nThe type of analysis of the model is defined by the argument\n'group_comparison' or 'correlation'.\n\nSUBJECT_VISITS_WITH_COVARIATES_TSV is a TSV file containing a list of\nsubjects with their sessions and all the covariates and factors in your\nmodel.\n\nCONTRAST is a string defining the contrast matrix or the variable of\ninterest in the GLM, e.g. 'group' or 'age'\n\nPrerequisite: You need to have performed the t1-freesurfer pipeline on\nyour T1-weighted MR images or pet-surface pipeline for measurements of\nactivity map from PET.\n\nSee https://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/Stats_Surface/\n",
+  "command-line": "clinica run statistics-surface [CAPS_DIRECTORY] [GROUP_LABEL] [ORIG_INPUT_DATA] [GLM_TYPE] [SUBJECT_VISITS_WITH_COVARIATES_TSV] [CONTRAST] [COVARIATES] [FULL_WIDTH_AT_HALF_MAXIMUM] [ACQ_LABEL] [SUVR_REFERENCE_REGION] [CUSTOM_FILE] [MEASURE_LABEL] [WORKING_DIRECTORY] [N_PROCS] [CLUSTER_THRESHOLD]",
+  "inputs": [
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "group_label",
+      "type": "String",
+      "value-key": "[GROUP_LABEL]",
+      "name": "group_label"
+    },
+    {
+      "id": "orig_input_data",
+      "type": "String",
+      "value-key": "[ORIG_INPUT_DATA]",
+      "value-choices": [
+        "t1-freesurfer",
+        "pet-surface",
+        "custom-pipeline"
+      ],
+      "name": "orig_input_data"
+    },
+    {
+      "id": "glm_type",
+      "type": "String",
+      "value-key": "[GLM_TYPE]",
+      "value-choices": [
+        "group_comparison",
+        "correlation"
+      ],
+      "name": "glm_type"
+    },
+    {
+      "id": "subject_visits_with_covariates_tsv",
+      "type": "File",
+      "value-key": "[SUBJECT_VISITS_WITH_COVARIATES_TSV]",
+      "name": "subject_visits_with_covariates_tsv"
+    },
+    {
+      "id": "contrast",
+      "type": "String",
+      "value-key": "[CONTRAST]",
+      "name": "contrast"
+    },
+    {
+      "id": "covariates",
+      "type": "String",
+      "value-key": "[COVARIATES]",
+      "description": "List of covariates. Each covariate must match the column name of the TSV file. By default, no covariate is taken.",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--covariates",
+      "name": "covariates"
+    },
+    {
+      "id": "full_width_at_half_maximum",
+      "type": "Number",
+      "value-key": "[FULL_WIDTH_AT_HALF_MAXIMUM]",
+      "description": "FWHM for the surface smoothing. (Default: 20)",
+      "optional": true,
+      "command-line-flag": "--full_width_at_half_maximum",
+      "integer": true,
+      "name": "full_width_at_half_maximum"
+    },
+    {
+      "id": "acq_label",
+      "type": "String",
+      "value-key": "[ACQ_LABEL]",
+      "description": "Name of the label given to the PET acquisition, specifying the tracer used (acq-<acq_label>).",
+      "optional": true,
+      "command-line-flag": "--acq_label",
+      "value-choices": [
+        "11CPIB",
+        "18FAV1451",
+        "18FAV45",
+        "18FFBB",
+        "18FFDG",
+        "18FFMM"
+      ],
+      "name": "acq_label"
+    },
+    {
+      "id": "suvr_reference_region",
+      "type": "String",
+      "value-key": "[SUVR_REFERENCE_REGION]",
+      "description": "Intensity normalization using the average PET uptake in reference regions resulting in a standardized uptake value ratio (SUVR) map. It can be cerebellumPons (used for amyloid tracers) or pons (used for 18F-FDG tracers).",
+      "optional": true,
+      "command-line-flag": "--suvr_reference_region",
+      "value-choices": [
+        "pons",
+        "cerebellumPons",
+        "pons2",
+        "cerebellumPons2"
+      ],
+      "name": "suvr_reference_region"
+    },
+    {
+      "id": "custom_file",
+      "type": "String",
+      "value-key": "[CUSTOM_FILE]",
+      "description": "Pattern of file inside CAPS directory using @subject, @session, @fwhm, @hemi. This flag must be specified with the --measure_label flag). See Wiki for an example.",
+      "optional": true,
+      "command-line-flag": "--custom_file",
+      "name": "custom_file"
+    },
+    {
+      "id": "measure_label",
+      "type": "String",
+      "value-key": "[MEASURE_LABEL]",
+      "description": "Name of the feature type, it will be saved on the CAPS _measure-FEATURE_LABEL key-value association. This flag must be specified with the --custom_file flag). See Wiki for an example.",
+      "optional": true,
+      "command-line-flag": "--measure_label",
+      "name": "measure_label"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    },
+    {
+      "id": "cluster_threshold",
+      "type": "Number",
+      "value-key": "[CLUSTER_THRESHOLD]",
+      "description": "Threshold to define a cluster in the process of cluster-wise correction. (Default: 0.001)",
+      "optional": true,
+      "command-line-flag": "--cluster_threshold",
+      "name": "cluster_threshold"
+    }
+  ]
+}
