@@ -80,8 +80,7 @@ jobs:
         pip install .
 
     - name: Create descriptor
-      # uses: michellewang/python-cli-to-boutiques@v1
-      uses: michellewang/python-cli-to-boutiques@514b24cd9c0e7ba7a032fbbc83ad75b30d42bd4b
+      uses: michellewang/python-cli-to-boutiques@v1
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
@@ -90,4 +89,3 @@ jobs:
         click-prog-name: clinica
         click-parent-location: clinica.cmdline:cli
         updates-str: '{"schema-version": "0.5" ${{ matrix.updates }} }'
-        validate: true
