@@ -1,0 +1,85 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-t1-linear",
+  "description": "Affine registration of T1w images to the MNI standard space.\n\nhttps://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/T1_Linear/\n",
+  "command-line": "clinica run t1-linear [BIDS_DIRECTORY] [CAPS_DIRECTORY] [UNCROPPED_IMAGE] [RANDOM_SEED] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [N_PROCS] [USE_ANTSPY] [CAPS_NAME]",
+  "inputs": [
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "uncropped_image",
+      "type": "Flag",
+      "value-key": "[UNCROPPED_IMAGE]",
+      "description": "Do not crop the image with template (cropped image are suggested for using with DL models)",
+      "optional": true,
+      "command-line-flag": "--uncropped_image",
+      "name": "uncropped_image"
+    },
+    {
+      "id": "random_seed",
+      "type": "Number",
+      "value-key": "[RANDOM_SEED]",
+      "description": "Specify the random seed for algorithms that support it.",
+      "optional": true,
+      "command-line-flag": "--random_seed",
+      "integer": true,
+      "name": "random_seed"
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    },
+    {
+      "id": "use_antspy",
+      "type": "Flag",
+      "value-key": "[USE_ANTSPY]",
+      "description": "Use ANTsPy instead of ANTs.",
+      "optional": true,
+      "command-line-flag": "--use-antspy",
+      "name": "use_antspy"
+    },
+    {
+      "id": "caps_name",
+      "type": "String",
+      "value-key": "[CAPS_NAME]",
+      "description": "The name of the CAPS dataset that will be created by the pipeline. This is not the name of the folder itself, but the name in the metadata, which can be different if desired. If the CAPS folder already exists and already has a name, this will have no effect and the existing name will be kept.",
+      "optional": true,
+      "command-line-flag": "--caps-name",
+      "name": "caps_name"
+    }
+  ]
+}
