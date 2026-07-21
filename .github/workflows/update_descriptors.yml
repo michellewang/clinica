@@ -84,8 +84,8 @@ jobs:
       with:
         parser-type: click
         parser-location: ${{ matrix.parser-location }}
+        prog-name: clinica
         output-path: descriptors/${{ matrix.tool-name }}.json
         token: ${{ secrets.PAT }}
-        click-prog-name: clinica
         click-parent-location: clinica.cmdline:cli
         updates-str: '{ "name": "clinica-${{ matrix.tool-name }}" ${{ matrix.updates }} }'
