@@ -1,0 +1,85 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-t1-freesurfer",
+  "description": "Cross-sectional pre-processing of T1w images with FreeSurfer.\n\nhttps://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/T1_FreeSurfer/\n",
+  "command-line": "clinica run t1-freesurfer [BIDS_DIRECTORY] [CAPS_DIRECTORY] [RECON_ALL_ARGS] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [OVERWRITE_OUTPUTS] [ATLAS_PATH] [N_PROCS] [CAPS_NAME]",
+  "inputs": [
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "recon_all_args",
+      "type": "String",
+      "value-key": "[RECON_ALL_ARGS]",
+      "description": "Additional flags for recon-all command line Please note that = is compulsory after --recon_all_args/-raa flag (this is not the case for other flags). (Default: \"-qcache\")",
+      "optional": true,
+      "command-line-flag": "--recon_all_args",
+      "name": "recon_all_args",
+      "command-line-flag-separator": "="
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "overwrite_outputs",
+      "type": "Flag",
+      "value-key": "[OVERWRITE_OUTPUTS]",
+      "description": "Force overwrite of output files in CAPS folder.",
+      "optional": true,
+      "command-line-flag": "--overwrite_outputs",
+      "name": "overwrite_outputs"
+    },
+    {
+      "id": "atlas_path",
+      "type": "File",
+      "value-key": "[ATLAS_PATH]",
+      "description": "Compute atlases at the end of the path",
+      "optional": true,
+      "command-line-flag": "--atlas_path",
+      "name": "atlas_path"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    },
+    {
+      "id": "caps_name",
+      "type": "String",
+      "value-key": "[CAPS_NAME]",
+      "description": "The name of the CAPS dataset that will be created by the pipeline. This is not the name of the folder itself, but the name in the metadata, which can be different if desired. If the CAPS folder already exists and already has a name, this will have no effect and the existing name will be kept.",
+      "optional": true,
+      "command-line-flag": "--caps-name",
+      "name": "caps_name"
+    }
+  ]
+}
