@@ -1,0 +1,155 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-t1-volume",
+  "description": "Volume-based processing of T1-weighted MR images.\n\n   GROUP_LABEL is an user-defined identifier to target a specific group of subjects.\n\nhttps://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/T1_Volume/\n",
+  "command-line": "clinica run t1-volume [BIDS_DIRECTORY] [CAPS_DIRECTORY] [GROUP_LABEL] [SMOOTH] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [TISSUE_CLASSES] [TISSUE_PROBABILITY_MAPS] [DONT_SAVE_WARPED_UNMODULATED] [SAVE_WARPED_MODULATED] [DARTEL_TISSUES] [TISSUES] [MODULATE] [VOXEL_SIZE] [N_PROCS] [CAPS_NAME]",
+  "inputs": [
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "group_label",
+      "type": "String",
+      "value-key": "[GROUP_LABEL]",
+      "name": "group_label"
+    },
+    {
+      "id": "smooth",
+      "type": "Number",
+      "value-key": "[SMOOTH]",
+      "description": "Specify the different isomorphic FWHM in millimeters to smooth the image.",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--smooth",
+      "integer": true,
+      "name": "smooth"
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "tissue_classes",
+      "type": "Number",
+      "value-key": "[TISSUE_CLASSES]",
+      "description": "Tissue classes (1: gray matter (GM), 2: white matter (WM), 3: cerebrospinal fluid (CSF), 4: bone, 5: soft-tissue, 6: background) to save.",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--tissue_classes",
+      "integer": true,
+      "name": "tissue_classes"
+    },
+    {
+      "id": "tissue_probability_maps",
+      "type": "File",
+      "value-key": "[TISSUE_PROBABILITY_MAPS]",
+      "description": "Tissue probability maps to use for segmentation.",
+      "optional": true,
+      "command-line-flag": "--tissue_probability_maps",
+      "name": "tissue_probability_maps"
+    },
+    {
+      "id": "dont_save_warped_unmodulated",
+      "type": "Flag",
+      "value-key": "[DONT_SAVE_WARPED_UNMODULATED]",
+      "description": "Do not save warped unmodulated images for tissues specified in --tissue_classes flag.",
+      "optional": true,
+      "command-line-flag": "--dont_save_warped_unmodulated",
+      "name": "dont_save_warped_unmodulated"
+    },
+    {
+      "id": "save_warped_modulated",
+      "type": "Flag",
+      "value-key": "[SAVE_WARPED_MODULATED]",
+      "description": "Save warped modulated images for tissues specified in --tissue_classes flag.",
+      "optional": true,
+      "command-line-flag": "--save_warped_modulated",
+      "name": "save_warped_modulated"
+    },
+    {
+      "id": "dartel_tissues",
+      "type": "Number",
+      "value-key": "[DARTEL_TISSUES]",
+      "description": "Tissues to use for DARTEL template calculation.",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--dartel_tissues",
+      "integer": true,
+      "name": "dartel_tissues"
+    },
+    {
+      "id": "tissues",
+      "type": "Number",
+      "value-key": "[TISSUES]",
+      "description": "Tissues to create flow fields to DARTEL template.",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--tissues",
+      "integer": true,
+      "name": "tissues"
+    },
+    {
+      "id": "modulate",
+      "type": "Flag",
+      "value-key": "[MODULATE]",
+      "description": "Modulate output images, no modulation preserves concentrations.",
+      "optional": true,
+      "command-line-flag": "--modulate",
+      "name": "modulate"
+    },
+    {
+      "id": "voxel_size",
+      "type": "Number",
+      "value-key": "[VOXEL_SIZE]",
+      "description": "Specifying the voxel sizes of the output image.",
+      "optional": true,
+      "list": true,
+      "min-list-entries": 3,
+      "max-list-entries": 3,
+      "command-line-flag": "--voxel_size",
+      "name": "voxel_size"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    },
+    {
+      "id": "caps_name",
+      "type": "String",
+      "value-key": "[CAPS_NAME]",
+      "description": "The name of the CAPS dataset that will be created by the pipeline. This is not the name of the folder itself, but the name in the metadata, which can be different if desired. If the CAPS folder already exists and already has a name, this will have no effect and the existing name will be kept.",
+      "optional": true,
+      "command-line-flag": "--caps-name",
+      "name": "caps_name"
+    }
+  ]
+}
