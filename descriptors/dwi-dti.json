@@ -1,0 +1,52 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-dwi-dti",
+  "description": "DTI-based processing of DWI datasets.\n\nhttps://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/DWI_DTI/\n",
+  "command-line": "clinica run dwi-dti [CAPS_DIRECTORY] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [RANDOM_SEED] [N_PROCS]",
+  "inputs": [
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "random_seed",
+      "type": "Number",
+      "value-key": "[RANDOM_SEED]",
+      "description": "Specify the random seed for algorithms that support it.",
+      "optional": true,
+      "command-line-flag": "--random_seed",
+      "integer": true,
+      "name": "random_seed"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    }
+  ]
+}
