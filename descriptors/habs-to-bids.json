@@ -1,0 +1,20 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-habs-to-bids",
+  "description": "HABS to BIDS converter.",
+  "command-line": "clinica convert habs-to-bids [SOURCEDATA] [RAWDATA]",
+  "inputs": [
+    {
+      "id": "sourcedata",
+      "type": "File",
+      "value-key": "[SOURCEDATA]",
+      "name": "sourcedata"
+    },
+    {
+      "id": "rawdata",
+      "type": "File",
+      "value-key": "[RAWDATA]",
+      "name": "rawdata"
+    }
+  ]
+}
