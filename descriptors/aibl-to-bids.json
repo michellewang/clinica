@@ -1,0 +1,54 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-aibl-to-bids",
+  "description": "AIBL to BIDS converter.\n\nConvert the imaging and clinical data of AIBL (https://aibl.csiro.au/adni/index.html), located in DATASET_DIRECTORY\nand CLINICAL_DATA_DIRECTORY respectively, to a BIDS dataset in the target BIDS_DIRECTORY.\n",
+  "command-line": "clinica convert aibl-to-bids [DATASET_DIRECTORY] [CLINICAL_DATA_DIRECTORY] [BIDS_DIRECTORY] [CLINICAL_DATA_ONLY] [OVERWRITE] [N_PROCS]",
+  "inputs": [
+    {
+      "id": "dataset_directory",
+      "type": "File",
+      "value-key": "[DATASET_DIRECTORY]",
+      "name": "dataset_directory"
+    },
+    {
+      "id": "clinical_data_directory",
+      "type": "File",
+      "value-key": "[CLINICAL_DATA_DIRECTORY]",
+      "name": "clinical_data_directory"
+    },
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "clinical_data_only",
+      "type": "Flag",
+      "value-key": "[CLINICAL_DATA_ONLY]",
+      "description": "Convert clinical data only.",
+      "optional": true,
+      "command-line-flag": "--clinical-data-only",
+      "name": "clinical_data_only"
+    },
+    {
+      "id": "overwrite",
+      "type": "Flag",
+      "value-key": "[OVERWRITE]",
+      "description": "Overwrites previously written nifti and json files.",
+      "optional": true,
+      "command-line-flag": "--overwrite",
+      "name": "overwrite"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    }
+  ]
+}
