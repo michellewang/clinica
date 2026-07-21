@@ -1,0 +1,150 @@
+{
+  "schema-version": "0.5+styx",
+  "name": "clinica-pet-volume",
+  "description": "SPM-based pre-processing of PET images.\n\n   GROUP_LABEL is an user-defined identifier to target a specific group of subjects.\nFor this pipeline, it is associated to the DARTEL template that you had created when running the t1-volume pipeline.\n\n   ACQ_LABEL corresponds to the label given to the PET acquisition, specifying the tracer used.\nFrequently used values are '18FFDG' or '18FAV45'.\n\n   The reference region must be specified to perform intensity normalization.\nAccepted values include: 'pons', 'cerebellumPons', 'pons2', 'cerebellumPons2'.\n\nPrerequisite: You need to have performed the t1-volume pipeline on your T1-weighted MR images.\n\nSee https://aramislab.paris.inria.fr/clinica/docs/public/latest/Pipelines/PET_Volume/\n",
+  "command-line": "clinica run pet-volume [BIDS_DIRECTORY] [CAPS_DIRECTORY] [GROUP_LABEL] [ACQ_LABEL] [SUVR_REFERENCE_REGION] [PVC_PSF_TSV] [RECONSTRUCTION_METHOD] [SUBJECTS_SESSIONS_TSV] [WORKING_DIRECTORY] [N_PROCS] [MASK_TISSUES] [MASK_THRESHOLD] [PVC_MASK_TISSUES] [SMOOTH]",
+  "inputs": [
+    {
+      "id": "bids_directory",
+      "type": "File",
+      "value-key": "[BIDS_DIRECTORY]",
+      "name": "bids_directory"
+    },
+    {
+      "id": "caps_directory",
+      "type": "File",
+      "value-key": "[CAPS_DIRECTORY]",
+      "name": "caps_directory"
+    },
+    {
+      "id": "group_label",
+      "type": "String",
+      "value-key": "[GROUP_LABEL]",
+      "name": "group_label"
+    },
+    {
+      "id": "acq_label",
+      "type": "String",
+      "value-key": "[ACQ_LABEL]",
+      "value-choices": [
+        "11CPIB",
+        "18FAV1451",
+        "18FAV45",
+        "18FFBB",
+        "18FFDG",
+        "18FFMM"
+      ],
+      "name": "acq_label"
+    },
+    {
+      "id": "suvr_reference_region",
+      "type": "String",
+      "value-key": "[SUVR_REFERENCE_REGION]",
+      "value-choices": [
+        "pons",
+        "cerebellumPons",
+        "pons2",
+        "cerebellumPons2"
+      ],
+      "name": "suvr_reference_region"
+    },
+    {
+      "id": "pvc_psf_tsv",
+      "type": "File",
+      "value-key": "[PVC_PSF_TSV]",
+      "description": "TSV file containing for each PET image its point spread function (PSF) measured in mm at x, y & z coordinates. Columns must contain: participant_id, session_id, acq_label, psf_x, psf_y and psf_z.",
+      "optional": true,
+      "command-line-flag": "--pvc_psf_tsv",
+      "name": "pvc_psf_tsv"
+    },
+    {
+      "id": "reconstruction_method",
+      "type": "String",
+      "value-key": "[RECONSTRUCTION_METHOD]",
+      "description": "Select the PET scans based on the reconstruction method. If unset, PET scans will be selected independently of the reconstruction method.",
+      "optional": true,
+      "command-line-flag": "--reconstruction_method",
+      "value-choices": [
+        "nacstat",
+        "nacdyn",
+        "acstat",
+        "acdyn",
+        "coregdyn",
+        "coregavg",
+        "coregstd",
+        "coregiso"
+      ],
+      "name": "reconstruction_method"
+    },
+    {
+      "id": "subjects_sessions_tsv",
+      "type": "File",
+      "value-key": "[SUBJECTS_SESSIONS_TSV]",
+      "description": "TSV file containing a list of subjects with their sessions.",
+      "optional": true,
+      "command-line-flag": "--subjects_sessions_tsv",
+      "name": "subjects_sessions_tsv"
+    },
+    {
+      "id": "working_directory",
+      "type": "File",
+      "value-key": "[WORKING_DIRECTORY]",
+      "description": "Temporary directory to store pipelines intermediate results.",
+      "optional": true,
+      "command-line-flag": "--working_directory",
+      "name": "working_directory"
+    },
+    {
+      "id": "n_procs",
+      "type": "Number",
+      "value-key": "[N_PROCS]",
+      "description": "Number of cores used to run in parallel.",
+      "optional": true,
+      "command-line-flag": "--n_procs",
+      "integer": true,
+      "name": "n_procs"
+    },
+    {
+      "id": "mask_tissues",
+      "type": "Number",
+      "value-key": "[MASK_TISSUES]",
+      "description": "Tissue classes (1: gray matter (GM), 2: white matter (WM), 3: cerebrospinal fluid (CSF), 4: bone, 5: soft-tissue, 6: background) to use for masking the PET image (default: GM, WM and CSF i.e. --mask_tissues 1 2 3).",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--mask_tissues",
+      "integer": true,
+      "name": "mask_tissues"
+    },
+    {
+      "id": "mask_threshold",
+      "type": "Number",
+      "value-key": "[MASK_THRESHOLD]",
+      "description": "Value used as threshold to binarize the tissue maps. (Default: 0.3)",
+      "optional": true,
+      "command-line-flag": "--mask_threshold",
+      "name": "mask_threshold"
+    },
+    {
+      "id": "pvc_mask_tissues",
+      "type": "Number",
+      "value-key": "[PVC_MASK_TISSUES]",
+      "description": "Tissue classes (1: gray matter (GM), 2: white matter (WM), 3: cerebrospinal fluid (CSF), 4: bone, 5: soft-tissue, 6: background) to use as mask for PVC (default: GM, WM and CSF i.e. --pvc_mask_tissues 1 2 3).",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--pvc_mask_tissues",
+      "integer": true,
+      "name": "pvc_mask_tissues"
+    },
+    {
+      "id": "smooth",
+      "type": "Number",
+      "value-key": "[SMOOTH]",
+      "description": "Specify the different isomorphic FWHM in millimeters to smooth the image.",
+      "list": true,
+      "min-list-entries": 0,
+      "command-line-flag": "--smooth",
+      "integer": true,
+      "name": "smooth"
+    }
+  ]
+}
